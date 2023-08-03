@@ -34,7 +34,7 @@
                         <th class="px-4 py-3">From</th>
                         <th class="px-4 py-3">Title</th>
                         <th class="px-4 py-3">Description</th>
-                        <th class="px-4 py-3">Date</th>
+                        <th class="px-4 py-3">Scheduled At</th>
                         <th class="px-4 py-3">Completed At</th>
                         <th class="px-4 py-3">Status</th>
                     </tr>
@@ -83,7 +83,8 @@
 
 
                         <td class="px-4 py-3 text-xs dark:text-gray-200">
-                            {{ $notification->created_at->diffForHumans() }}
+                            {{ $notification->date }}
+
                         </td>
                         <td class="px-4 py-3 text-xs dark:text-gray-200">
                             {{ $notification->excecuted_at }}
