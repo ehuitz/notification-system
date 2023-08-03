@@ -1,8 +1,8 @@
 <div class="flex flex-col flex-1 w-full">
-    <header class="z-10 py-4 bg-blue-900 shadow-md dark:bg-gray-800">
+    <header class="z-10 py-4 bg-gray-900 shadow-md dark:bg-gray-800">
         <div
             class="container flex items-center justify-between h-full px-6
-            mx-auto text-blue-600 dark:text-blue-300">
+            mx-auto text-gray-600 dark:text-blue-300">
 
             <!-- Mobile hamburger -->
             <button
@@ -39,7 +39,7 @@
                         @click="toggleProfileMenu" @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu"
                         aria-label="Account" aria-haspopup="true">
                         <img class="object-cover w-8 h-8 rounded-full"
-                        src="https://i.pravatar.cc/100?u={{ auth()->user()->id ?? '0'}}" alt="" aria-hidden="true" />
+                        src="https://i.pravatar.cc/100?u={{ auth()->user()->id}}" alt="" aria-hidden="true" loading="lazy" />
 
 
                     </button>
@@ -50,7 +50,7 @@
                                 dark:text-gray-300 dark:bg-gray-700"
                         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
                         x-transition:leave-end="opacity-0" aria-label="submenu" x-show="isProfileMenuOpen">
-                        {{-- <li class="text-center"><a href="{{ route('profile.show') }}"> {{ auth()->user()->first_name . ' '. auth()->user()->last_name }} </a></li> --}}
+                        <li class="text-center">{{ auth()->user()->name }}</li>
 <hr>
                         <x-nav.dropdown-item text="Log out" icon="logout" type="button"
                             link="{{ route('logout') }}" />

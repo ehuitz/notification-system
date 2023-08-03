@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        \App\Models\Status::factory()->create(['name' => 'Upcoming',    'color' => '0']);
+        \App\Models\Status::factory()->create(['name' => 'Scheduled',    'color' => '0']);
         \App\Models\Status::factory()->create(['name' => 'Processing', 'color' => '1']);
         \App\Models\Status::factory()->create(['name' => 'Completed',  'color' => '9']);
 

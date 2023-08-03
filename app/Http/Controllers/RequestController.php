@@ -35,15 +35,18 @@ class RequestController extends Controller
         $request->validate([
             'subject' => 'required',
             'content' => 'required',
-            'date' => 'required'
+            'date' => 'required',
+            'time' => 'required'
         ]);
 
-        $status = Status::where('name', 'Ongoing')->first();
+        $combined = date('Y-m-d H:i:s', strtotime("$request->date $request->time"));
+
+        $status = Status::where('id', 1)->first();
 
         $notification = Notification::create([
             'title' => $request->subject,
             'content' => $request->content,
-            'date' => $request->date,
+            'date' => $combined,
             'status_id' => $status->id,
             'owner_id' => auth()->user()->id,
         ]);
