@@ -9,6 +9,8 @@ use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminOnly;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('home');
+// Route::view('/', 'welcome')->name('home');
+
+Route::get('/', function () {
+    return redirect()->route('home');
+});
+
+Route::get('/home', function() {
+    if (auth()->user()->is_admin())
+        return redirect()->route('notifications.index');
+    return redirect()->route('requests.index');
+})->middleware('auth', 'verified')
+  ->name('home');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
@@ -54,3 +67,11 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', LogoutController::class)
         ->name('logout');
 });
+
+Route::middleware([AdminOnly::class, 'auth'])->group(function() {
+    require __DIR__.'/management.php';
+    require __DIR__.'/notification.php';
+});
+
+require __DIR__.'/requests.php';
+
