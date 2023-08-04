@@ -12,6 +12,11 @@ class Notification extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'date' => 'datetime:Y-m-d H:i:s',
+        'excecuted_at' => 'datetime:Y-m-d H:i:s'
+    ];
+
     public function scopeFilter($query, array $filters) {
         $query->when($filters['search'] ?? false, fn($query, $search) =>
             $query->where(fn($query) =>
@@ -56,4 +61,6 @@ class Notification extends Model
     {
         return $this->belongsTo(User::class, 'owner_id', 'id');
     }
+
+
 }

@@ -23,6 +23,8 @@
          wire:model.defer="email"
       />
 
+      <x-forms.time label="Date:" id="edit_date"  wire:model.defer="date" />
+
       <x-forms.role-select :identifier="'edit_role'" :label="'Assigned Roles'"
 			:name="'edit_role'" :val="''" wire:model.defer="role"
 		/>
